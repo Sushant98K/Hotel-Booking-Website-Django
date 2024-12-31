@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="text-center"> {{ success_message }}</h1>
+        <div class="container">
+            <table class="table mt-5 table-bordered">
+                <tr>
+                    <th><label for="">hotel name</label></th>
+                    <td>{{hotel.hotelName}}</td>
+                </tr>
+                <tr>
+                    <th><label for="">Location</label></th>
+                    <td>{{hotel.location}}</td>
+                </tr>
+                <tr>
+                    <th><label for="">Hotel Type</label></th>
+                    <td>{{hotel.hotelType}}</td>
+                </tr>
+                <tr>
+                    <th><label for="">Rating</label></th>
+                    <td>{{hotel.rating}}</td>
+                </tr>
+                <tr>
+                    <th><label for="">Address</label></th>
+                    <td>{{hotel.address}}</td>
+                </tr>
+                <tr>
+                    <th><label for="">Contact</label></th>
+                    <td>{{hotel.contact}}</td>
+                </tr>
+                <tr>
+                    <th><label for="">hotel Image</label></th>
+                    <td><img src="{{ hotel.hotel_image.url }}" alt="{{ hotel.hotelName }}" style="width: 100px; height: auto;"></td>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>

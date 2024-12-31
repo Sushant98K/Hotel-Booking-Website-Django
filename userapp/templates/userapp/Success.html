@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="text-center"> {{ success_message }}</h1>
+        <div class="container">
+            <table class="table mt-5 table-bordered">
+                <tr>
+                    <th><label for="">User Email</label></th>
+                    <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                    <th><label for="">Username</label></th>
+                    <td>{{user.username}}</td>
+                </tr>
+                <tr>
+                    <th><label for="">Password</label></th>
+                    <td>{{user.password}}</td>
+                </tr>
+                <tr>
+                    <th><label for="">Contact No</label></th>
+                    <td>{{user.contactNo}}</td>
+                </tr>
+                <tr>
+                    <th><label for="">Government Id</label></th>
+                    <td>{{user.govId}}</td>
+                </tr>
+                <tr>
+                    <th><label for="">Address</label></th>
+                    <td>{{user.address}}</td>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>

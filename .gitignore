@@ -1,0 +1,87 @@
+# Ignore Python virtual environment
+myenv/
+venv/
+env/
+.venv/
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore Django secret key and other sensitive data
+*.env
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Ignore database files
+*.sqlite3
+*.db
+
+# Ignore media and static files (these can be regenerated)
+media/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Ignore macOS specific files
+.DS_Store
+
+# Ignore Windows specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignore log files
+*.log
+
+# Ignore pipenv files
+Pipfile
+Pipfile.lock
+
+# Ignore coverage files
+.coverage
+htmlcov/
+
+# Ignore pytest cache
+.pytest_cache/
+
+# Ignore migrations (optional, but recommended to keep them in version control)
+# bookingapp/migrations/
+# hotelapp/migrations/
+# userapp/migrations/
+
+# Ignore compiled files
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dll
+*.dylib
+
+# Ignore distribution files
+dist/
+build/
+*.egg-info/
+*.egg
+*.whl
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore other unnecessary files
+*.bak
+*.tmp
+*.temp
+*.log
+*.sql
+*.sqlite
+*.sqlite3
