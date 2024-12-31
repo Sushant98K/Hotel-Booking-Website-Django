@@ -58,6 +58,7 @@ This project uses **MySQL** as the database. Follow these steps to configure it:
 
 3. **Update Django Settings**:
    - Open `hotelbooking/settings.py` and update the `DATABASES` configuration:
+    ```settings.py
      DATABASES = {
          'default': {
              'ENGINE': 'django.db.backends.mysql',
@@ -68,6 +69,7 @@ This project uses **MySQL** as the database. Follow these steps to configure it:
              'PORT': '3306',
          }
      }
+     ```
 
 ## 🚀 Running the Project
 
