@@ -31,7 +31,11 @@ Before you begin, ensure you have the following installed:
 2. **Set Up a Virtual Environment** (optional but recommended):
     ```cmd
     python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    source venv/bin/activate  
+    ```
+    # On Windows use 
+    ```cmd
+    `venv\Scripts\activate`
     ```
 
 3. **Install Dependencies**:
