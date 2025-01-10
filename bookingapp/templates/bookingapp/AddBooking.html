@@ -1,24 +1,30 @@
-<!DOCTYPE html>
+{% extends 'frontendapp/base.html' %}
+
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"crossorigin="anonymous"/>
-    <title>Document</title>
-</head>
-<body>
+
+
+{% block title %}
+    addbooking
+{% endblock title %}
+
+
+{% block heading %}
+    Add Booking
+{% endblock heading %}
+    
+
+{% block maincontent %}
+  
     <div class="container">
-        <h1 class="text-center">Welcome to my website</h1>
         <form action="" class="my-5" method="post">
             {% csrf_token %}
             <div class="form-group">
-                <input class="form-control" type="text" id="email" value="example@gmail.com" name="email" disabled>
+                <input class="form-control" type="text" id="email" value="example@gmail.com" name="email" readonly>
             </div>
             <div class="row my-3">
                 <div class="form-group col-md-6">
                     <label for="room_category">Room Category</label>
-                    <input class="form-control" type="text" name="room_category" id="room_category" disabled>
+                    <input class="form-control" type="text" name="room_category" value="{{cat_data.roomType}}" id="room_category" readonly>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="roomType">Price</label>
@@ -26,7 +32,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">₹</span>
                         </div>
-                        <input type="text" class="form-control" id="price_per_room" name="price_per_room" disabled>
+                        <input type="text" class="form-control" id="price_per_room" value="{{cat_data.price_per_room}}" name="price_per_room" readonly>
                         <div class="input-group-append">
                             <span class="input-group-text">per room</span>
                         </div>
@@ -36,7 +42,7 @@
             <div class="row mb-3">
                 <div class="form-group col-md-6">
                     <label for="no_of_rooms">No of Rooms</label>
-                    <input type="text" class="form-control" id="no_of_rooms" name="no_of_rooms">
+                    <input type="number" class="form-control" id="no_of_rooms" name="no_of_rooms">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="no_of_people">No of Peoples</label>
@@ -56,7 +62,7 @@
             <div class="row mb-3">
                 <div class="form-group col-md-6">
                     <label for="total_price">Total Price</label>
-                    <input type="text" class="form-control" id="total_price" name="total_price" readonly>
+                    <input type="text" class="form-control" id="total_price" name="total_price">
                 </div>
             </div>
             
@@ -65,9 +71,11 @@
         </form>
     </div>
     
+{% endblock maincontent %}
 
 
+{% block script %}
+    
     <script src="{% static 'bookingapp/js/bookingscript.js' %}"></script>
 
-</body>
-</html>
+{% endblock script %}

@@ -1,0 +1,26 @@
+{% extends 'frontendapp/base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+
+    Testimonials
+    {{block.super}}
+    
+{% endblock title %}
+
+
+{% block heading %}
+
+    Testimonial
+    
+{% endblock heading %}
+    
+
+{% block maincontent %}
+    <!-- Testimonial Start -->
+    {% include 'frontendapp/components/testimonialpage.html' %}
+    <!-- Testimonial End -->
+
+{% endblock maincontent %} 

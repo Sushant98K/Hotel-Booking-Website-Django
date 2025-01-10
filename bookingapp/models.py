@@ -11,3 +11,12 @@ class Booking(models.Model):
     check_in=models.DateTimeField()
     check_out=models.DateTimeField()
     total_price=models.FloatField(default=0.0)
+
+class Order(models.Model):
+    fname = models.CharField(max_length=100)
+    lname = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=100)
+    subtotal = models.FloatField(default=0.0)
+    status = models.CharField(max_length=50)
+    orderId = models.CharField(max_length=50)

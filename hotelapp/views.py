@@ -31,7 +31,7 @@ def addhotel(request):
 
 def showHotel(request):
     hotels = Hotel.objects.all()
-    return render(request, 'hotelapp/hotellist.html', {'hotels': hotels})
+    return render(request, 'hotelapp/hotellist.html', {'hotels': hotels, 'current_page': 'hotellist'})
 
 def updateHotels(request):
     if request.method == 'POST':
@@ -104,7 +104,7 @@ def addCategory(request, hotelId):
 def cList(request, hotelId):
     hotel = Hotel.objects.get(hotelId=hotelId)
     cat_data = Category.objects.filter(hotel=hotel)
-    return render(request, 'hotelapp/CategoryList.html', {'hotel_1': hotel, 'cat_data': cat_data})
+    return render(request, 'hotelapp/CategoryList.html', {'hotel_1': hotel, 'cat_data': cat_data,})
 
 def editCategory(request, id):
     # Retrieve the category instance by ID

@@ -25,6 +25,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-mlpj&@zw!=1!5nqt@&l+w=ecixcjgtg$zi6n*t9q0%71ahi#v^'
 
+
+RAZORPAY_KEY_ID = 'rzp_test_JaK4MBiyWahlRx'
+RAZORPAY_SECRET_KEY = 'LS3j7dypEPln4zjUsooEZUGG'
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -46,6 +51,8 @@ EXTERNAL_APPS = [
     'hotelapp',
     'userapp',
     'bookingapp',
+    'loginapp',
+    'frontendapp',
 ]
 
 INSTALLED_APPS += EXTERNAL_APPS
@@ -87,7 +94,7 @@ WSGI_APPLICATION = 'hotelbooking.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": 'django.db.backends.mysql',
-        "NAME": "hotel_booking",
+        "NAME": "django_hotels",
         "USER": "root",
         "PASSWORD": "1234",
         "HOST": "127.0.0.1",

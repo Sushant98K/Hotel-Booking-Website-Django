@@ -1,0 +1,26 @@
+{% extends 'frontendapp/base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+
+    404 - Not Found
+    
+{% endblock title %}
+
+
+{% block heading %}
+
+    Page Not Found
+    
+{% endblock heading %}
+    
+
+{% block maincontent %}
+
+    <!-- error Start -->
+    {% include 'frontendapp/components/404page.html' %}
+    <!-- error End -->
+
+{% endblock maincontent %} 

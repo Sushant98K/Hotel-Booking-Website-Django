@@ -1,0 +1,67 @@
+{% load static %}
+<!-- Booking Cart Icon -->
+{% if request.session.custemail is not None %}
+<a class="text-reset me-3" href="{% url 'bookinglist' %}" id="booking">
+    <img width="30" height="30" src="https://img.icons8.com/color/48/event-accepted.png" alt="event-accepted"/>
+</a>
+{% endif %}
+<!-- Avatar Dropdown -->
+<div class="dropdown">
+    <a
+        class="dropdown-toggle d-flex align-items-center"
+        href="#"
+        id="avatarDropdown"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+    >
+    
+        <img
+            src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+            class="rounded-circle"
+            height="35"
+            alt="User Avatar"
+            loading="lazy"
+        />
+    </a>
+    <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="avatarDropdown"
+    >
+        <li><a class="dropdown-item" href="{% url 'profile' %}">My profile</a></li>
+        
+        {% if request.session.adminemail is not None %}
+            
+        <li><a class="dropdown-item" href="{% url 'editAdmin' %}">Settings</a></li>
+            
+        {% endif %}
+
+        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</div>
+<!-- Avatar Dropdown End -->
+
+<!-- Add Custom CSS -->
+<style>
+    .dropdown-menu {
+        will-change: transform;
+    }
+    .dropdown-menu-end {
+        right: 0;
+        left: auto;
+    }
+</style>
+
+<!-- Add Bootstrap's Popper.js if not included -->
+<script>
+    const dropdown = document.querySelector('.dropdown');
+    dropdown.addEventListener('mouseenter', () => {
+        const menu = dropdown.querySelector('.dropdown-menu');
+        menu.classList.add('show');
+    });
+
+    dropdown.addEventListener('mouseleave', () => {
+        const menu = dropdown.querySelector('.dropdown-menu');
+        menu.classList.remove('show');
+    });
+</script>

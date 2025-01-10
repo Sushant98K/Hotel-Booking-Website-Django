@@ -1,0 +1,29 @@
+{% extends 'frontendapp/base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+
+    Booking {{block.super}}
+    
+{% endblock title %}
+    
+
+{% block heading %}
+    Booking
+{% endblock heading %}
+    
+
+{% block maincontent %}
+ 
+    <!-- Process Start -->
+    {% include 'frontendapp/components/proccesspage.html' %}
+    <!-- Process Start -->
+
+
+    <!-- Booking Start -->
+    {% include 'frontendapp/components/bookingpage.html' %}
+    <!-- Booking Start -->
+
+{% endblock maincontent %}

@@ -1,0 +1,27 @@
+{% extends 'frontendapp/base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+
+    Guides
+    {{block.super}}
+    
+{% endblock title %}
+
+
+{% block heading %}
+
+    Guides
+    
+{% endblock heading %}
+    
+
+{% block maincontent %}
+
+    <!-- Team Start -->
+    {% include 'frontendapp/components/teampage.html' %}
+    <!-- Team End -->
+
+{% endblock maincontent %} 

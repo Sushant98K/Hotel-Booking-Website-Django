@@ -1,12 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Confirm Deletion</title>
-</head>
-<body>
+{% extends 'frontendapp/base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+    DeleteCategory
+{% endblock title %}
+
+
+{% block heading %}
+    Confirm Delete
+{% endblock heading %}
+    
+
+{% block maincontent %}
+
+<!--Confirm Delete Start-->
     <div class="container">
         <h1 class="text-center">Confirm Deletion</h1>
         <p>Are you sure you want to delete the hotel <strong>{{ hotel.hotelName }}</strong>?</p>
@@ -16,5 +25,7 @@
             <a href="{% url 'showhotel' %}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
-</body>
-</html>
+
+<!--Confirm Delete Category End-->
+
+{% endblock maincontent %}

@@ -1,0 +1,28 @@
+{% extends 'frontendapp/base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+    delete
+{% endblock title %}
+
+
+{% block heading %}
+    Confirm Delete
+{% endblock heading %}
+    
+
+{% block maincontent %}
+   
+    <div class="container">
+        <h1 class="text-center">Confirm Deletion</h1>
+        <p>Are you sure you want to delete the booking for <strong>{{ booking.hotel.hotelName }}</strong>?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="{% url 'bookinglist' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+{% endblock maincontent %}

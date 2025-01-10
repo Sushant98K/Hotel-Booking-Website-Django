@@ -1,13 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.hashers import make_password, check_password 
 from django.http import HttpResponse
-from .models import User
-from django.shortcuts import redirect
+from bookingapp.models import *
+from loginapp.models import *
+from .models import *
+
 # Create your views here.
 def addUser(request):
     if request.method=='POST':
         email = request.POST['email']
         username = request.POST['username']
-        password = request.POST['password']
+        password = make_password(request.POST['password'])  #apply make password to encrypt the password
         contactNo = request.POST['contactNo']
         govId = request.POST['govId']
         address = request.POST['address']
@@ -22,7 +25,7 @@ def addUser(request):
         )
         new_user.save()
         
-        return render(request, 'userapp/success.html', {'user': new_user, 'success_message': 'User Added Successfully!' })
+        return render(request, 'userapp/success.html', {'user': new_user, 'success_message': 'User Added Successfully!','current_page': 'adduser' })
     else:
         return render(request, 'userapp/AddUser.html')
 
@@ -76,3 +79,17 @@ def deleteUser (request, email):
         return redirect('showuser')  # Redirect to the user list after deletion
 
     return render(request, 'userapp/confirm_delete.html', {'user': user})  # Render confirmation template
+
+def viewProfile(request):
+    # Retrieve the user instance (assuming the user is logged in)
+    custemail = request.session.get('custemail')
+    adminemail = request.session.get('adminemail')
+    
+    if custemail:
+        user = User.objects.get(email=custemail)
+        return render(request, 'userapp/profile.html', {'user_data': user})
+    elif adminemail:
+        admin = Admin.objects.get(email=adminemail)
+        return render(request, 'userapp/profile.html', {'user_data': admin})
+    else:
+        return HttpResponse("<h1>You are not logged in</h1>")

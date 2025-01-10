@@ -1,0 +1,23 @@
+{% extends 'frontendapp/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Services
+    {{block.super}}
+{% endblock title %}
+
+{% block heading %} Services {% endblock heading %}
+
+{% block maincontent %}
+    
+    <!-- Service Start -->
+    {% include 'frontendapp/components/servicepage.html' %}
+    <!-- Service End -->
+
+
+    <!-- Testimonial Start -->
+    {% include 'frontendapp/components/testimonialpage.html' %}
+    <!-- Testimonial End -->
+ 
+{% endblock maincontent %}

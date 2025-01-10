@@ -1,0 +1,55 @@
+{% extends 'frontendapp/base.html' %}
+
+{% load static %}
+
+
+
+    {% block heading %} Enjoy Your Vacation With Us {% endblock heading %}
+    {% block edithero %}
+        <p class="fs-4 text-white mb-4 animated slideInDown">Tempor erat elitr rebum at clita diam amet diam et eos erat ipsum lorem sit</p>
+        {% include 'frontendapp/components/searchbar.html' %}     
+    {% endblock edithero %}
+
+    
+    {% block maincontent %}     
+           
+    <!-- About Start -->
+    {% include 'frontendapp/components/aboutpage.html' %}
+    <!-- About End -->
+
+
+    <!-- Service Start -->
+    {% include 'frontendapp/components/servicepage.html' %}
+    <!-- Service End -->
+
+
+    <!-- Destination Start -->
+    {% include 'frontendapp/components/destinationpage.html' %}
+    <!-- Destination Start -->
+
+
+    <!-- Package Start -->
+    {% include 'frontendapp/components/packagepage.html' %}
+    <!-- Package End -->
+
+
+    <!-- Booking Start -->
+    {% include 'frontendapp/components/bookingpage.html' %}
+    <!-- Booking Start -->
+
+
+    <!-- Process Start -->
+    {% include 'frontendapp/components/proccesspage.html' %}
+    <!-- Process Start -->
+
+
+    <!-- Team Start -->
+    {% include 'frontendapp/components/teampage.html' %}
+    <!-- Team End -->
+
+
+    <!-- Testimonial Start -->
+    {% include 'frontendapp/components/testimonialpage.html' %}
+    <!-- Testimonial End -->
+        
+{% endblock maincontent %}

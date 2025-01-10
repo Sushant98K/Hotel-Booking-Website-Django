@@ -1,0 +1,25 @@
+{% extends 'frontendapp/base.html' %}
+
+
+{% load static %}
+
+
+{% block title %}
+
+{{block.super}}
+About
+    
+{% endblock title %}
+
+
+{% block heading %}
+    About Us
+{% endblock heading %}
+    
+    
+
+
+{% block maincontent %}
+    {% include 'frontendapp/components/aboutpage.html' %}
+{% endblock maincontent %}
+    

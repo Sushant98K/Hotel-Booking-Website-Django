@@ -7,5 +7,6 @@ urlpatterns = [
     path('updateuser/', updateUser, name='updateuser'),
     path('showuser/edit/<str:email>', editUser, name='edituser'),
     path('showuser/delete/<str:email>/', deleteUser , name='deleteuser'),
+    path('profile/', viewProfile, name='profile'),
 
 ]

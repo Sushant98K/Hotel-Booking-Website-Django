@@ -1,0 +1,22 @@
+{% extends 'frontendapp/base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+    Destination {{block.super}}
+{% endblock title %}
+    
+
+{% block heading %}
+    Destination
+{% endblock heading %}
+    
+
+{% block maincontent %}
+
+<!-- Destination Start -->
+{% include 'frontendapp/components/destinationpage.html' %}
+<!-- Destination Start -->
+
+{% endblock maincontent %}
