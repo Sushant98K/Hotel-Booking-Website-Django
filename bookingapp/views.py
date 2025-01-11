@@ -141,6 +141,7 @@ def paymentsuccess(request):
     
     # email=request.GET.get("email")
     sessionemail = request.session.get('custemail')
+    user = User.objects.get(email=request.session['custemail'])
     
     if not sessionemail:
         # If the email is not found, return an error message or redirect
@@ -150,6 +151,7 @@ def paymentsuccess(request):
     payId = request.GET.get('payment_id')
     tbill = request.GET.get('total_bill')
     order_no = request.GET.get('order_id')
+    invoice_date = datetime.now()
     
     
     try:
@@ -162,9 +164,13 @@ def paymentsuccess(request):
 
         # Retrieve the user associated with the order
         user = User.objects.get(email=sessionemail)
+        booking_data = Booking.objects.filter(user=user)
+        total = sum(item.total_price for item in booking_data)
+        tax = total * 0.15
+        sum_total = total + tax
 
         # Delete all Booking entries related to the user
-        Booking.objects.filter(user=user).delete()
+        # Booking.objects.filter(user=user).delete()
 
     except Exception as e:
         # Handle the case where the Order or User does not exist
