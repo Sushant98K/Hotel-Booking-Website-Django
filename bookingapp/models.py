@@ -13,6 +13,7 @@ class Booking(models.Model):
     total_price=models.FloatField(default=0.0)
 
 class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     fname = models.CharField(max_length=100)
     lname = models.CharField(max_length=100)
     email = models.EmailField()

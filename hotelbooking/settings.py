@@ -29,6 +29,13 @@ SECRET_KEY = 'django-insecure-mlpj&@zw!=1!5nqt@&l+w=ecixcjgtg$zi6n*t9q0%71ahi#v^
 RAZORPAY_KEY_ID = 'rzp_test_JaK4MBiyWahlRx'
 RAZORPAY_SECRET_KEY = 'LS3j7dypEPln4zjUsooEZUGG'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST ='smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ssghadye1121@gmail.com'
+EMAIL_HOST_PASSWORD = 'emvu yesc ylmh ryfi'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

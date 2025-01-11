@@ -104,6 +104,11 @@
           <p class="dis info my-3">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
             quos ipsa sed officiis odio
+
+            email: - {{email}}
+            sessionemail - {{sessionemail}}
+            razorpay_merchant_key = {{context.razorpay_merchant_key}}
+            dynamic domain = {{context.domain}}
           </p>
           <div>
             {% for item in booking_data %}
@@ -231,7 +236,7 @@
           console.log("success");
           console.log(response);
 
-          window.location.href = `http://localhost:8000/paymentsuccess?order_id={{orderobj.ordernumber}}&payment_id=${response.razorpay_payment_id}`;
+          window.location.href = `http://{{context.domain}}/paymentsuccess?order_id={{new_booking.orderId}}&payment_id=${response.razorpay_payment_id}&total_bill={{new_booking.subtotal}}&email={{sessionemail}}`;
         },
       };
 
@@ -248,56 +253,3 @@
   </body>
 </html>
 
-{% comment %} <script>
-    document.getElementById('rzp-button1').onclick = function(e){
-        var options = {
-            "key": "{{ razorpay_key }}",  // Razorpay API key passed from the backend
-            "amount": "{{ sum_total * 100 }}",  // Dynamic amount in paise (e.g., ₹100 = 10000 paise)
-            "currency": "INR",
-            "name": "Your Company Name",
-            "description": "Test Transaction",
-            "image": "https://example.com/your_logo.png",  // Optional: Add your logo URL
-            "order_id": "{{ new_booking.orderId }}",  // Dynamic order ID passed from the backend
-            "handler": function (response){
-                alert("Payment ID: " + response.razorpay_payment_id);
-                // Send payment details to the backend for verification
-                verifyPayment(response);
-            },
-            "prefill": {
-                "name": "{{ fname }} {{ lname }}",  // Prefill customer name
-                "email": "{{ email }}",  // Prefill customer email
-                "contact": "{{ phone }}"  // Prefill customer phone
-            },
-            "theme": {
-                "color": "#3399cc"  // Optional: Customize the theme color
-            }
-        };
-        var rzp1 = new Razorpay(options);
-        rzp1.open();
-        e.preventDefault();
-    }
-
-    function verifyPayment(response) {
-        // Send payment details to the backend for verification
-        fetch("/verify-payment/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": "{{ csrf_token }}"  // For Django CSRF protection
-            },
-            body: JSON.stringify({
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_signature: response.razorpay_signature
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Payment verified successfully!");
-            } else {
-                alert("Payment verification failed!");
-            }
-        });
-    }
-</script> {% endcomment %}

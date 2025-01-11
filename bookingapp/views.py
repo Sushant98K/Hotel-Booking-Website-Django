@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
+from django.core.mail import send_mail
 from django.conf import settings
 from datetime import datetime
 from hotelapp.models import *
 from userapp.models import *
 from .models import *
+import razorpay
 
 def addBooking(request, id):
     if request.method == 'POST':
@@ -65,6 +67,7 @@ def checkout(request):
     total = sum(item.total_price for item in booking_data)
     tax = total * 0.15
     sum_total = total + tax
+    sessionemail = request.session['custemail']
      
     
     if request.method == 'POST':
@@ -77,6 +80,7 @@ def checkout(request):
         razorpay_key = settings.RAZORPAY_KEY_ID
         
         new_booking = Order(
+            user = user,
             fname = fname,
             lname = lname,
             email = email,
@@ -84,12 +88,47 @@ def checkout(request):
             status = status,
             subtotal = subtotal, 
         )
-        # new_booking.save()
+        new_booking.save()
         
         current_date = datetime.now().strftime("%Y%m%d")
         new_booking.orderId = f"{current_date}{new_booking.id}"
-        # new_booking.save()
-        razorpay_amount = subtotal * 100
+        new_booking.save()
+        razorpay_amount = int(subtotal * 100)  # Convert to integer for Razorpay
+        
+        #authorizee razorpay client with API keys
+        razorpay_client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_SECRET_KEY))
+        
+        currency = 'INR'
+        amount = razorpay_amount
+        
+        #create razorpay Order
+        razorpay_order = razorpay_client.order.create(
+            dict(
+                amount=amount, 
+                currency=currency, 
+                payment_capture='0',
+                notes={
+                    'custemail': sessionemail,  # Pass session email to Razorpay
+                        }
+                )
+            )
+        
+        #order id of newly created order.
+        razorpay_order_id = razorpay_order['id']
+        
+        
+        #we need to pass these details to frontend
+        
+        context = {
+            'razorpay_order_id': razorpay_order_id,
+            'razorpay_merchant_key': settings.RAZORPAY_KEY_ID,
+            'razorpay_amount': amount,
+            'currency': currency,
+            'sessionemail': sessionemail,
+            'domain': request.get_host(),  # Dynamic domain
+        }
+        
+        
         return render(request, 'bookingapp/payment.html', locals())
     else:
         return render(request, 'bookingapp/checkout.html', locals())
@@ -97,3 +136,50 @@ def checkout(request):
 
 def payment(request):
     return render(request, 'bookingapp/payment.html', locals())
+
+def paymentsuccess(request):
+    
+    # email=request.GET.get("email")
+    sessionemail = request.session.get('custemail')
+    
+    if not sessionemail:
+        # If the email is not found, return an error message or redirect
+        return HttpResponse("<h1>Error: Email not found in session</h1>")
+    
+    # Retrieve payment details from Razorpay callback
+    payId = request.GET.get('payment_id')
+    tbill = request.GET.get('total_bill')
+    order_no = request.GET.get('order_id')
+    
+    
+    try:
+        # Retrieve the Order object using the order_id
+        order = Order.objects.get(orderId=order_no)
+
+        # Update the status field to "payment success"
+        order.status = "payment success"
+        order.save()
+
+        # Retrieve the user associated with the order
+        user = User.objects.get(email=sessionemail)
+
+        # Delete all Booking entries related to the user
+        Booking.objects.filter(user=user).delete()
+
+    except Exception as e:
+        # Handle the case where the Order or User does not exist
+        return HttpResponse("<h1>Error: Order or User not found</h1>")
+    
+    
+    
+    
+    subject = "To book hotel"
+    email_body = f"Payment Id: {payId}\nOrder No: {order_no}\nTotal Bill: {tbill}\nEmail: {sessionemail}"
+    from_email=settings.EMAIL_HOST_USER
+        
+    fail_silently = False
+        
+    send_mail(subject=subject, message=email_body, from_email=from_email, recipient_list=["sushant98k@gmail.com"])
+        
+    # return HttpResponse("<h1>Payment success......</h1>")
+    return render(request, 'bookingapp/paymentsuccess.html', locals())
